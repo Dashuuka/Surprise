@@ -1,9 +1,11 @@
+/* Сброс отступов */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Общие стили для body */
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #ffafbd, #ffc3a0);
@@ -16,6 +18,7 @@ body {
   padding: 1rem;
 }
 
+/* Основной контейнер */
 .container {
   text-align: center;
   padding: 2rem;
@@ -28,6 +31,7 @@ body {
   margin: 2rem;
 }
 
+/* Заголовок */
 .title {
   font-size: 3rem;
   color: #ff4081;
@@ -36,6 +40,7 @@ body {
   animation: bounce 1s ease infinite;
 }
 
+/* Блок поздравительного текста */
 .message {
   background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
@@ -71,7 +76,7 @@ body {
   left: -1.5rem;
 }
 
-/* Cake styles */
+/* Стили торта */
 .cake {
   position: relative;
   width: 200px;
@@ -167,7 +172,7 @@ body {
   box-shadow: 0 0 10px #ffeb3b;
 }
 
-/* Balloon styles */
+/* Анимация шариков */
 .balloons {
   position: fixed;
   width: 100%;
@@ -197,18 +202,7 @@ body {
   background: #888;
 }
 
-.balloon1 {
-  background: linear-gradient(135deg, #ff4081, #ff80ab);
-}
-
-.balloon2 {
-  background: linear-gradient(135deg, #2196f3, #64b5f6);
-}
-
-.balloon3 {
-  background: linear-gradient(135deg, #4caf50, #81c784);
-}
-
+/* Анимация движения шариков вверх */
 @keyframes floatUp {
   0% {
     transform: translateY(0);
@@ -220,7 +214,7 @@ body {
   }
 }
 
-/* Animations */
+/* Анимации */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -231,7 +225,7 @@ body {
   50% { transform: translateX(-50%) scale(1.1); }
 }
 
-/* Confetti */
+/* Конфетти */
 .confetti {
   position: fixed;
   top: 0;
@@ -241,7 +235,7 @@ body {
   pointer-events: none;
 }
 
-/* Wishing Fountain styles */
+/* Фонтан желаний */
 .fountain {
   position: relative;
   width: 200px;
@@ -311,12 +305,7 @@ body {
   50% { transform: translateY(-5px); }
 }
 
-.emoji {
-  display: inline-block;
-  font-size: 1.2em;
-  vertical-align: middle;
-}
-
+/* Дополнительные стили под разные экраны */
 @media screen and (max-width: 768px) {
   .container {
     margin: 1rem;
@@ -355,13 +344,11 @@ body {
     height: 52px;
   }
 
-  /* Adjust confetti size for mobile */
   .confetti div {
     width: 8px;
     height: 8px;
   }
 
-  /* Make sure wish text fits on mobile screens */
   .wish-text {
     font-size: 0.9rem;
     max-width: 90vw;
@@ -384,5 +371,53 @@ body {
 
   .fountain {
     transform: scale(0.7);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Новые стили для блока фотографии и анимации поцелуев: */
+
+/* Контейнер для фото */
+.photo-container {
+  position: relative;
+  display: inline-block;
+  margin: 2rem auto;
+  max-width: 350px; /* Можно изменить */
+  text-align: center;
+}
+
+/* Сама фотография */
+.birthday-photo {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Поцелуйчики (эмодзи) */
+.kiss {
+  position: absolute;
+  font-size: 1.5rem;
+  pointer-events: none;
+  animation: kiss-animation 2s forwards;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Анимация появления/исчезновения поцелуя */
+@keyframes kiss-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
   }
 }

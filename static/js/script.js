@@ -1,4 +1,4 @@
-// Create confetti effect
+// Создаем эффект конфетти
 function createConfetti() {
   const colors = ['#ff4081', '#2196f3', '#4caf50', '#ffeb3b', '#9c27b0'];
   const confettiCount = 100;
@@ -11,13 +11,16 @@ function createConfetti() {
     particle.style.height = '10px';
     particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     particle.style.left = Math.random() * 100 + 'vw';
-    particle.style.top = -10 + 'px';
+    particle.style.top = '-10px';
     particle.style.borderRadius = '50%';
     particle.style.transform = `rotate(${Math.random() * 360}deg)`;
 
-    const animation = particle.animate([
+    particle.animate([
       { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
-      { transform: `translate(${Math.random() * 200 - 100}px, ${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+      {
+        transform: `translate(${Math.random() * 200 - 100}px, ${window.innerHeight}px) rotate(${Math.random() * 360}deg)`,
+        opacity: 0
+      }
     ], {
       duration: Math.random() * 3000 + 3000,
       easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -28,7 +31,7 @@ function createConfetti() {
   }
 }
 
-// Add music notes floating animation
+// Анимация "нот" (music notes)
 function createMusicNotes() {
   const notes = ['♪', '♫', '♩', '♬'];
   const container = document.querySelector('.container');
@@ -44,19 +47,17 @@ function createMusicNotes() {
     note.style.opacity = '0.6';
     container.appendChild(note);
 
-    const animation = note.animate([
+    note.animate([
       { transform: 'translateY(0)', opacity: 0.6 },
       { transform: 'translateY(-500px)', opacity: 0 }
     ], {
       duration: 3000,
       easing: 'linear'
-    });
-
-    animation.onfinish = () => note.remove();
+    }).onfinish = () => note.remove();
   }, 500);
 }
 
-// Wishing fountain interaction
+// Фонтан желаний
 function initWishingFountain() {
   const fountain = document.querySelector('.fountain');
   const fountainBowl = fountain.querySelector('.fountain-bowl');
@@ -74,10 +75,11 @@ function initWishingFountain() {
     const rect = fountain.getBoundingClientRect();
     const waterRect = water.getBoundingClientRect();
 
+    // Создаем "монету"
     const coin = document.createElement('div');
     coin.className = 'coin';
 
-    // Position relative to viewport for better mobile support
+    // Позиция клика внутри фонтана
     const startX = e.clientX - rect.left - 10;
     const startY = e.clientY - rect.top - 10;
 
@@ -85,18 +87,21 @@ function initWishingFountain() {
     coin.style.top = startY + 'px';
     fountain.appendChild(coin);
 
+    // Создаем "пожелание"-текст
     const wish = document.createElement('div');
     wish.className = 'wish-text';
     wish.textContent = wishes[Math.floor(Math.random() * wishes.length)];
-    // Position wish text relative to viewport
+
+    // Располагаем текст относительно окна (body)
     wish.style.left = e.clientX + 'px';
     wish.style.top = (e.clientY - 30) + 'px';
-    document.body.appendChild(wish); // Append to body instead of fountain
+    document.body.appendChild(wish);
 
-    // Calculate the distance to the water surface
+    // Считаем, насколько монета должна упасть до воды
     const waterSurfaceY = waterRect.top - rect.top + (waterRect.height * 0.4);
     const fallDistance = waterSurfaceY - startY;
 
+    // Анимация падения монеты
     coin.animate([
       {
         opacity: 1,
@@ -115,10 +120,11 @@ function initWishingFountain() {
         transform: `translateY(${fallDistance}px) rotate(360deg)`
       }
     ], {
-      duration: 1500, // Slower fall
+      duration: 1500,
       easing: 'cubic-bezier(0.45, 0, 0.55, 1)'
     }).onfinish = () => coin.remove();
 
+    // Анимация появления-исчезновения текста пожелания
     wish.animate([
       { opacity: 0, transform: 'translateY(0)' },
       { opacity: 1, transform: 'translateY(-20px)' },
@@ -128,6 +134,7 @@ function initWishingFountain() {
       easing: 'ease-out'
     }).onfinish = () => wish.remove();
 
+    // Лёгкое "плескание" воды
     water.animate([
       { transform: 'translateY(0)' },
       { transform: 'translateY(-10px)' },
@@ -139,7 +146,7 @@ function initWishingFountain() {
   });
 }
 
-// Add balloon animation
+// Анимация шариков
 function createBalloons() {
   const colors = [
     ['#ff4081', '#ff80ab'],
@@ -172,10 +179,42 @@ function createBalloons() {
   }, 1500);
 }
 
-// Initialize all animations when page loads
+/*
+   Новая функция, создающая на фотографии поцелуйчики (эмодзи "💋").
+   Каждые 1.5 секунды генерируется новый "поцелуй"
+   в случайном месте контейнера .photo-container
+*/
+function createKissesOnPhoto() {
+  const photoContainer = document.querySelector('.photo-container');
+  if (!photoContainer) return;
+
+  setInterval(() => {
+    // Создаём элемент для поцелуя
+    const kiss = document.createElement('div');
+    kiss.className = 'kiss';
+    kiss.textContent = '💋';
+
+    // Случайные координаты в процентах от контейнера
+    const xPercent = Math.random() * 80 + 10; // чтобы не прилегали к самым краям
+    const yPercent = Math.random() * 80 + 10;
+    kiss.style.left = xPercent + '%';
+    kiss.style.top = yPercent + '%';
+
+    // Добавляем поцелуй в контейнер
+    photoContainer.appendChild(kiss);
+
+    // Удаляем, когда анимация закончится
+    kiss.addEventListener('animationend', () => {
+      kiss.remove();
+    });
+  }, 900);
+}
+
+// Инициализируем все эффекты при загрузке DOM
 document.addEventListener('DOMContentLoaded', () => {
   createConfetti();
   createMusicNotes();
   initWishingFountain();
   createBalloons();
+  createKissesOnPhoto(); // Запуск анимации поцелуйчиков над фото
 });
