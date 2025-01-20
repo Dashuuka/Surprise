@@ -242,6 +242,14 @@ body {
   height: 200px;
   margin: 2rem auto;
   cursor: pointer;
+    outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.fountain:focus,
+.fountain:active,
+.fountain:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .fountain-base {
