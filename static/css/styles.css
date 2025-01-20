@@ -159,14 +159,6 @@ body {
   border-radius: 4px;
 }
 
-.signature {
-  margin-top: 2rem;
-  font-size: 1.4rem;
-  color: #555;
-  font-style: italic;
-  text-align: center;
-}
-
 .flame {
   position: absolute;
   top: -15px;
@@ -250,26 +242,12 @@ body {
   height: 200px;
   margin: 2rem auto;
   cursor: pointer;
-    outline: none;
+  outline: none;
   -webkit-tap-highlight-color: transparent;
-}
-.fountain:focus,
-.fountain:active,
-.fountain:focus-visible {
-  outline: none;
-  box-shadow: none;
-}
-.fountain {
-  cursor: pointer;
-  /* Отключаем анимацию выделения при тапе */
-  -webkit-tap-highlight-color: transparent; 
-  /* Убираем выделение текста при долгом тапе (iOS) */
-  -webkit-user-select: none; 
-  -webkit-touch-callout: none; 
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   user-select: none;
-  outline: none;
 }
-
 .fountain:focus,
 .fountain:active,
 .fountain:focus-visible,
@@ -278,7 +256,6 @@ body {
   box-shadow: none !important;
   -webkit-tap-highlight-color: transparent !important;
 }
-
 
 .fountain-base {
   position: absolute;
@@ -458,4 +435,13 @@ body {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/* Стиль для подписи от Дашуки */
+.signature {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: #555;
+  font-style: italic;
+  text-align: center;
 
+}
