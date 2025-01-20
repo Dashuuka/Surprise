@@ -435,13 +435,4 @@ body {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/* Стиль для подписи от Дашуки */
-.signature {
-  margin-top: 2rem;
-  font-size: 1.4rem;
-  color: #555;
-  font-style: italic;
-  text-align: center;
 
-}
